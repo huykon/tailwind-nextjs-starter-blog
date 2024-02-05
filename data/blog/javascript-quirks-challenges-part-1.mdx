@@ -1,0 +1,196 @@
+---
+title: 'JavaScript Quirks & Challenges: Part 1'
+date: 2024-02-05T09:13:17.253Z
+lastmod: '2024-02-05'
+tags: ['js', 'js-weird', 'javascript']
+draft: true
+summary: 'The Unusual Aspects of the JavaScript World - Part 1'
+layout: PostSimple
+# bibliography: references-data.bib
+---
+
+## Overview
+
+This series will let you know or remind you some weirds of Javascript programming language.
+
+### typeof null returns "object" instead of "null"
+
+Yes, that's correct! It's one of the quirks in JavaScript. When you use the `typeof` operator on `null`, it returns **object** instead of _null_. This behavior has been present since the early days of JavaScript and is considered one of the language's historical oddities. It's important for developers to be aware of this behavior to avoid potential issues in their code.
+
+For example:
+
+```js
+console.log(typeof null) // Outputs: "object"
+```
+
+While this may seem counterintuitive, it's a well-known behavior and has been maintained for backward compatibility reasons. When checking for `null`, it's generally recommended to use a direct comparison (`===`) rather than relying on typeof. For example:
+
+```js
+const myVar = null
+
+if (myVar === null) {
+  console.log('myVar is null')
+} else {
+  console.log('myVar is not null')
+}
+```
+
+This way, you can perform an explicit check for `null` without relying on the `typeof` behavior.
+
+### NaN === NaN returns false
+
+The equality operator (`===`) returns `false` when comparing two instances of `NaN`. This behavior may seem counterintuitive at first, but it is by design.
+
+The reason for this is that `NaN` represents a value that is "Not a Number," and it is used to signify the result of an undefined or unrepresentable mathematical operation. Since the concept of "not a number" is inherently undefined, two instances of `NaN` are considered not equal to each other.
+
+Example:
+
+```js
+console.log(NaN === NaN) // Outputs: false
+```
+
+To check if a value is `NaN`, you should use the `isNaN()` function:
+
+```js
+console.log(isNaN(NaN)) // Outputs: true
+```
+
+This behavior ensures that when you encounter `NaN`, you can reliably identify it using the `isNaN()` function. If `NaN === NaN` returned true, it might lead to unexpected behavior and make it more challenging to distinguish between a legitimate `NaN` and other values in certain scenarios.
+
+### [] + [] returns an empty string
+
+The `+` operator is overloaded to perform both addition and concatenation. When you use the `+` operator with two arrays, JavaScript will implicitly convert the arrays to strings and then concatenate those strings. If the arrays are empty, the result will be an empty string.
+
+Here's an example:
+
+```js
+console.log([] + []) // Outputs: ""
+```
+
+In this case, the empty arrays are converted to empty strings, and the concatenation results in an empty string.
+
+It's important to note that the behavior of the `+` operator depends on the types of the operands. When used with arrays, it performs string concatenation. However, if one of the operands is not an array, JavaScript will perform numeric addition instead of concatenation:
+
+```js
+console.log([] + 5) // Outputs: "5"  (array is converted to string, then concatenated with 5)
+console.log([] + '5') // Outputs: "5"  (array is converted to string, then concatenated with "5")
+console.log([2] + [3]) // Outputs: "23" (arrays are converted to strings, then concatenated)
+```
+
+This behavior can be quirky, and it's essential for developers to be aware of how the `+` operator behaves in different contexts.
+
+### typeof NaN returns "number"
+
+The `typeof` operator returns "number" when applied to `NaN`. While `NaN` stands for "Not a Number," its underlying representation in JavaScript is of the number data type. Therefore, `typeof NaN` evaluates to "number".
+
+For example:
+
+```js
+console.log(typeof NaN) // Outputs: "number"
+```
+
+`NaN` is considered a special value of the number type that represents the result of undefined or unrepresentable mathematical operations. The decision to classify `NaN` as a number was made for practical reasons, even though it might not align with the intuitive understanding of the term "number" in everyday language.
+
+### 1 / 0 returns Infinity
+
+The dividing a finite number by zero results in `Infinity`.
+
+Example:
+
+```js
+console.log(1 / 0) // Outputs: Infinity
+```
+
+Similarly, dividing a negative finite number by zero results in `-Infinity`:
+
+```js
+console.log(-1 / 0) // Outputs: -Infinity
+```
+
+This behavior aligns with mathematical conventions, where division by zero is undefined in real numbers, but in the context of floating-point arithmetic in computing, JavaScript represents it as positive or negative infinity.
+
+### true + true returns 2
+
+when you use the `+` operator with two boolean values, JavaScript internally converts `true` to `1` and `false` to `0` before performing the addition. Therefore, `true + true` evaluates to `2`.
+
+For example:
+
+```js
+console.log(true + true) // Outputs: 2
+```
+
+This behavior is a result of type coercion in JavaScript. When the `+` operator is used with operands of different types (in this case, boolean values), JavaScript attempts to convert them to a common type before performing the operation. For addition, boolean values are converted to numeric values (1 for `true` and 0 for `false`), and then the addition is carried out.
+
+It's important to be aware of these type coercion rules to avoid unexpected behavior in your code. If you want to concatenate boolean values as strings, you would need to convert them explicitly to strings:
+
+```js
+console.log(String(true) + String(true)) // Outputs: "truetrue"
+```
+
+### `({} + [])` returns [object Object]
+
+The expression `{} + []` in JavaScript might behave unexpectedly due to the way the curly braces `{}` are interpreted. In this context, JavaScript treats the curly braces as a block rather than an object literal.
+
+When using the `+` operator, JavaScript tries to convert the block `{}` into a labeled statement. The expression essentially becomes an empty block followed by the unary plus operator acting on the array `[]`. The result is an empty block, and the array is then evaluated independently.
+
+Here's how it works:
+
+```
+{} + [] // This is interpreted as an empty block + unary plus operator applied to an empty array
+
+// The empty block is ignored, and the unary plus is applied to the empty array
++[] // This is equivalent to 0, as an empty array is coerced to 0
+
+// Therefore, the overall result is 0
+```
+
+If you want to avoid this behavior and treat the curly braces as an object literal, you can wrap them in parentheses:
+
+```
+({} + []) // Outputs: "[object Object]"
+```
+
+In this case, the parentheses ensure that the curly braces are treated as an object literal, and the `+` operator is applied to the concatenated string representation of the empty object and the empty array.
+
+It's worth noting that expressions like these can be confusing and are often best avoided for clarity in code.
+
+### parseInt('07') returns 7
+
+When you use `parseInt()` to convert the string '07' to an integer, it treats the string as an octal (base-8) representation. In octal notation, '07' is equivalent to the decimal number 7.
+
+```js
+console.log(parseInt('07')) // Outputs: 7
+```
+
+If you want to explicitly parse the string as a decimal number, you can specify the radix (base) as 10:
+
+```js
+console.log(parseInt('07', 10)) // Outputs: 7
+```
+
+It's a good practice to include the radix parameter to avoid potential issues and make the code more explicit, especially when working with numbers that might have leading zeros.
+
+### 2 + 2 + '2' returns "42"
+
+```js
+2 + 2 + '2'
+// First addition: 2 + 2 = 4
+// Second addition: 4 + '2' (string concatenation) => '42'
+```
+
+The addition operator is evaluated from left to right, so the first two 2's are added together to get `4`, and then that is concatenated with the string "2".
+
+### +!![]+!![]+!![] returns 3
+
+```js
+console.log(+!![] + !![] + !![]) // Outputs: 3
+```
+
+Let's break down the expression `+!![] + !![] + !![]`:
+
+1. `!![]`: This is a double NOT operator applied to an empty array (`[]`). The double NOT operator converts any truthy or falsy value to its corresponding boolean representation. An empty array is a truthy value, so !![] evaluates to true.
+2. `+!![]`: Here, the unary plus (`+`) operator is used to convert the boolean value true to its numeric equivalent, which is 1.
+3. `+!![] + !![]`: The first part, `+!![]`, results in `1`, and then you add another `true`, so the expression evaluates to `1 + 1`, which is `2`.
+4. `+!![] + !![] + !![]`: Adding another true with `+!![]` gives `2 + 1`, which equals `3`.
+
+So, indeed, `+!![] + !![] + !![]` evaluates to `3`. The key points here are the use of the double NOT operator (`!!`) to convert the empty array to `true` and the use of the unary plus operator to convert boolean values to their numeric equivalents.
