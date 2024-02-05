@@ -6,14 +6,13 @@ tags: ['js', 'js-weird', 'javascript']
 draft: true
 summary: 'The Unusual Aspects of the JavaScript World - Part 1'
 layout: PostSimple
-# bibliography: references-data.bib
 ---
 
 ## Overview
 
 This series will let you know or remind you some weirds of Javascript programming language.
 
-### typeof null returns "object" instead of "null"
+### 1. typeof null returns "object" instead of "null"
 
 Yes, that's correct! It's one of the quirks in JavaScript. When you use the `typeof` operator on `null`, it returns **object** instead of _null_. This behavior has been present since the early days of JavaScript and is considered one of the language's historical oddities. It's important for developers to be aware of this behavior to avoid potential issues in their code.
 
@@ -37,7 +36,7 @@ if (myVar === null) {
 
 This way, you can perform an explicit check for `null` without relying on the `typeof` behavior.
 
-### NaN === NaN returns false
+### 2. NaN === NaN returns false
 
 The equality operator (`===`) returns `false` when comparing two instances of `NaN`. This behavior may seem counterintuitive at first, but it is by design.
 
@@ -57,7 +56,7 @@ console.log(isNaN(NaN)) // Outputs: true
 
 This behavior ensures that when you encounter `NaN`, you can reliably identify it using the `isNaN()` function. If `NaN === NaN` returned true, it might lead to unexpected behavior and make it more challenging to distinguish between a legitimate `NaN` and other values in certain scenarios.
 
-### [] + [] returns an empty string
+### 3. [] + [] returns an empty string
 
 The `+` operator is overloaded to perform both addition and concatenation. When you use the `+` operator with two arrays, JavaScript will implicitly convert the arrays to strings and then concatenate those strings. If the arrays are empty, the result will be an empty string.
 
@@ -79,7 +78,7 @@ console.log([2] + [3]) // Outputs: "23" (arrays are converted to strings, then c
 
 This behavior can be quirky, and it's essential for developers to be aware of how the `+` operator behaves in different contexts.
 
-### typeof NaN returns "number"
+### 4. typeof NaN returns "number"
 
 The `typeof` operator returns "number" when applied to `NaN`. While `NaN` stands for "Not a Number," its underlying representation in JavaScript is of the number data type. Therefore, `typeof NaN` evaluates to "number".
 
@@ -91,7 +90,7 @@ console.log(typeof NaN) // Outputs: "number"
 
 `NaN` is considered a special value of the number type that represents the result of undefined or unrepresentable mathematical operations. The decision to classify `NaN` as a number was made for practical reasons, even though it might not align with the intuitive understanding of the term "number" in everyday language.
 
-### 1 / 0 returns Infinity
+### 5. 1 / 0 returns Infinity
 
 The dividing a finite number by zero results in `Infinity`.
 
@@ -109,7 +108,7 @@ console.log(-1 / 0) // Outputs: -Infinity
 
 This behavior aligns with mathematical conventions, where division by zero is undefined in real numbers, but in the context of floating-point arithmetic in computing, JavaScript represents it as positive or negative infinity.
 
-### true + true returns 2
+### 6. true + true returns 2
 
 when you use the `+` operator with two boolean values, JavaScript internally converts `true` to `1` and `false` to `0` before performing the addition. Therefore, `true + true` evaluates to `2`.
 
@@ -127,7 +126,7 @@ It's important to be aware of these type coercion rules to avoid unexpected beha
 console.log(String(true) + String(true)) // Outputs: "truetrue"
 ```
 
-### `({} + [])` returns [object Object]
+### 7. `({} + [])` returns [object Object]
 
 The expression `{} + []` in JavaScript might behave unexpectedly due to the way the curly braces `{}` are interpreted. In this context, JavaScript treats the curly braces as a block rather than an object literal.
 
@@ -154,7 +153,7 @@ In this case, the parentheses ensure that the curly braces are treated as an obj
 
 It's worth noting that expressions like these can be confusing and are often best avoided for clarity in code.
 
-### parseInt('07') returns 7
+### 8. parseInt('07') returns 7
 
 When you use `parseInt()` to convert the string '07' to an integer, it treats the string as an octal (base-8) representation. In octal notation, '07' is equivalent to the decimal number 7.
 
@@ -170,7 +169,7 @@ console.log(parseInt('07', 10)) // Outputs: 7
 
 It's a good practice to include the radix parameter to avoid potential issues and make the code more explicit, especially when working with numbers that might have leading zeros.
 
-### 2 + 2 + '2' returns "42"
+### 9. 2 + 2 + '2' returns "42"
 
 ```js
 2 + 2 + '2'
@@ -180,7 +179,7 @@ It's a good practice to include the radix parameter to avoid potential issues an
 
 The addition operator is evaluated from left to right, so the first two 2's are added together to get `4`, and then that is concatenated with the string "2".
 
-### +!![]+!![]+!![] returns 3
+### 10. +!![]+!![]+!![] returns 3
 
 ```js
 console.log(+!![] + !![] + !![]) // Outputs: 3
