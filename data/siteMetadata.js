@@ -16,7 +16,7 @@ const siteMetadata = {
   twitter: 'https://twitter.com/huykonOfficial',
   facebook: 'https://facebook.com/huykon225',
   youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
+  linkedin: 'https://www.linkedin.com/in/huykon225',
   threads: 'https://www.threads.net',
   instagram: 'https://www.instagram.com',
   locale: 'en-US',
