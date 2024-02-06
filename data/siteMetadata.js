@@ -13,7 +13,7 @@ const siteMetadata = {
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'huykon225@gmail.com',
   github: 'https://github.com/huykon',
-  twitter: 'https://twitter.com/huykonOfficial',
+  twitter: 'https://twitter.com/huykon225',
   facebook: 'https://facebook.com/huykon225',
   youtube: 'https://youtube.com',
   linkedin: 'https://www.linkedin.com/in/huykon225',
@@ -90,6 +90,11 @@ const siteMetadata = {
     //   apiKey: '599cec31baffa4868cae4e79f180729b',
     //   indexName: 'docsearch',
     // },
+  },
+  socialAccounts: {
+    github: 'huykon',
+    linkedin: 'huykon225',
+    twitter: 'huykon225',
   },
 }
 

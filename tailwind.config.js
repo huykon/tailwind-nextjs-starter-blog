@@ -27,6 +27,15 @@ module.exports = {
       colors: {
         primary: colors.pink,
         gray: colors.gray,
+        spotify: '#1DB954',
+      },
+      width: {
+        4.5: '1.125rem',
+        5.5: '1.375rem',
+      },
+      height: {
+        4.5: '1.125rem',
+        5.5: '1.375rem',
       },
       typography: ({ theme }) => ({
         DEFAULT: {
