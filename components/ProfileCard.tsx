@@ -5,7 +5,7 @@ import { ProfileCardInfo } from './ProfileInfo'
 // import { SpotifyNowPlaying } from './SpotifyNowPlaying'
 
 export function ProfileCard() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
 
   const onMouseMove = useCallback((e: MouseEvent) => {

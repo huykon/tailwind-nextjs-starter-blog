@@ -14,12 +14,14 @@ function createTypedInstance(el: HTMLElement) {
 }
 
 export function TypedBios() {
-  const el = useRef(null)
-  const typed = useRef(null)
+  const el = useRef<HTMLSpanElement>(null)
+  const typed = useRef<Typed | null>(null)
 
   useEffect(() => {
-    typed.current?.destroy()
-    typed.current = createTypedInstance(el.current)
+    if (el.current) {
+      typed.current?.destroy()
+      typed.current = createTypedInstance(el.current)
+    }
   }, [])
 
   return (
