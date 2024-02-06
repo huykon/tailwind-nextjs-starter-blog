@@ -2,8 +2,8 @@
 const siteMetadata = {
   title: 'JS Sharing',
   author: 'Mason Tran',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  headerTitle: 'Javascript Sharing',
+  description: 'A blog to document & share my knowledge & experience',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://jssharing.com',
