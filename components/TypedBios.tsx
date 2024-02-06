@@ -45,20 +45,20 @@ export function TypedBios() {
             <Twemoji emoji="soccer-ball" />,
             <Twemoji emoji="man-swimming" />,
             <Twemoji emoji="ping-pong" />,
-            <Twemoji emoji="volleyball" />
+            <Twemoji emoji="running-shoe" />
           </span>
         </li>
         <li>I love watching football.</li>
         <li>
-          I love playing keyboard & guitar. <Twemoji emoji="musical-keyboard" /> &{' '}
-          <Twemoji emoji="guitar" />
+          I love traveling & savouring delicious food. <Twemoji emoji="airplane-departure" /> &{' '}
+          <Twemoji emoji="face-savouring-delicious-food" />
         </li>
-        <li>I love Pop, Indie musics.</li>
+        <li>I love Pop, Indie music.</li>
         <li>
           I love playing chess. <Twemoji emoji="chess-pawn" />
         </li>
         <li>
-          I love playing video games, PES is my favorite one. <Twemoji emoji="video-game" />.
+          I love watching the streamer play games. <Twemoji emoji="video-game" />.
         </li>
       </ul>
       <span ref={el} className="text-neutral-900 dark:text-neutral-200" />
