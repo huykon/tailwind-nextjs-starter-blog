@@ -56,7 +56,7 @@ export function ProfileCard() {
         className="shadow-demure dark:bg-dark dark:shadow-mondegreen flex flex-col overflow-hidden bg-white outline outline-1 outline-gray-100 transition-all duration-200 ease-out dark:outline-gray-600 xl:rounded-lg"
       >
         <Image
-          src={'/static/images/1642821707359.jpeg'}
+          src={'/static/images/mason-avatar.jpeg'}
           alt="avatar"
           width={550}
           height={350}
